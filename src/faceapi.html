@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- face-api.js -->
+    <script src="js/face-api.js/dist/face-api.min.js"></script>
+
+    <!-- テストに使用する画像 -->
+    <img id="img" src="img/face.jpg"></img>
+</head>
+<body>
+    <h1>aaaaa</h1>
+    <p>ウンチ</p>
+    <p>ウンチ</p>
+
+</body>
+<script>
+// 画像の取得
+const img = document.getElementById('img')
+
+const app = async () => {
+// モデルの読み込み
+await faceapi.nets.tinyFaceDetector.load("js/face-api.js/weight/");
+await faceapi.nets.faceExpressionNet.load("js/face-api.js/weight/");
+
+// 顔の表情の分類
+  const detectionsWithExpressions = await faceapi.detectAllFaces(img,
+    new faceapi.TinyFaceDetectorOptions()).withFaceExpressions()
+
+    // 結果の出力
+  console.log(detectionsWithExpressions);
+}
+app()
+</script>
+</html>
