@@ -4,17 +4,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <script src="./js/main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     </head>
     <body>
-        <!-- カメラ映像が描画されます。 -->
-        <video id="video_area" style="background-color: #000" autoplay></video>
-
-        <!-- 押下するとカメラ映像から静止画をキャプチャします。 -->
-        <button id = "shutter_btn">静止画取得</button>
-
-        <!-- キャプチャした静止画が描画されます。 -->
-        <canvas id="capture_image"></canvas>
+        <script src="./js/face.js"></script>
+        <div id="wrapper" style="width:1020px; display:table;">
+            <div id="jsonOutput" style="width:600px; display:table-cell;">
+                Response:<br><br>
+                <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
+            </div>
+            <div id="imageDiv" style="width:420px; display:table-cell;">
+                Source image:<br><br>
+                <button id="start_btn">映像表示開始</button>
+                <button onclick="copyFrame()">認識実行</button>
+                <video id="video_area" style="background-color: #000" autoplay></video>
+                <canvas id="capture_image"></canvas>
+            </div>
+        </div>
+        <script src="./js/camera.js"></script>
     </body>
-    <script src="./js/camera.js"></script>
 </html>
