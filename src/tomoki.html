@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="./js/main.js"></script>
-</head>
-<body>
-    <!-- カメラ映像が描画されます。 -->
-    <video id="video_area" style="background-color: #000" autoplay></video>
-</body>
-<script src="./js/camera.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="./js/main.js"></script>
+    </head>
+    <body>
+        <!-- カメラ映像が描画されます。 -->
+        <video id="video_area" style="background-color: #000" autoplay></video>
+
+        <!-- 押下するとカメラ映像から静止画をキャプチャします。 -->
+        <button id = "shutter_btn">静止画取得</button>
+
+        <!-- キャプチャした静止画が描画されます。 -->
+        <canvas id="capture_image"></canvas>
+    </body>
+    <script src="./js/camera.js"></script>
 </html>
