@@ -1,11 +1,11 @@
 function processImage() {
-    // Replace <Subscription Key> with your valid subscription key.
+    // 使うときは自分のものに書き換える
     var subscriptionKey = "Subscription Key";
 
     var uriBase =
         "https://<My Endpoint String>.com/face/v1.0/detect";
 
-    // Request parameters.
+    // リクエストパラメーター
     var params = {
         "returnFaceId": "true",
         "returnFaceLandmarks": "false",
@@ -14,7 +14,7 @@ function processImage() {
             "hair,makeup,occlusion,accessories,blur,exposure,noise"
     };
 
-    // Display the image.
+    // 画像表示
     var type = 'image/jpeg';
     var dataurl = capture_image.toDataURL(type);
     var bin = atob(dataurl.split(',')[1]);
@@ -24,11 +24,11 @@ function processImage() {
     }
     var blob = new Blob([buffer.buffer], { type: type });
 
-    // Perform the REST API call.
+    // REST API呼び出し
     $.ajax({
         url: uriBase + "?" + $.param(params),
 
-        // Request headers.
+        // ヘッダーリクエスト
         beforeSend: function (xhrObj) {
             xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
@@ -37,17 +37,17 @@ function processImage() {
         processData: false,
         type: "POST",
 
-        // Request body.
+        // ボディーリクエスト
         data: blob,
     })
 
         .done(function (data) {
-            // Show formatted JSON on webpage.
+            // フォーマットしたJSONを表示
             $("#responseTextArea").val(JSON.stringify(data, null, 2));
         })
 
         .fail(function (jqXHR, textStatus, errorThrown) {
-            // Display error message.
+            // エラーメッセージ
             var errorString = (errorThrown === "") ?
                 "Error. " : errorThrown + " (" + jqXHR.status + "): ";
             errorString += (jqXHR.responseText === "") ?
